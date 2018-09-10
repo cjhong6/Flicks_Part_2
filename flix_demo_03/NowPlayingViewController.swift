@@ -11,7 +11,7 @@ import AlamofireImage
 import MBProgressHUD
 
 class NowPlayingViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
-
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -23,7 +23,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         searchBar.delegate = self
         
         refreshControl = UIRefreshControl()
@@ -32,9 +32,9 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
         
         tableView.dataSource = self
         fetchMovie()
-
+        
     }
-
+    
     
     func refreshControlAction(_ refreshControl: UIRefreshControl){
         fetchMovie()
@@ -49,8 +49,8 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
         let task = session.dataTask(with: request) { (data, response, error) in
             
-        MBProgressHUD.hide(for: self.view, animated: true)
-
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
             if let error = error {
                 print(error.localizedDescription)
                 
@@ -59,15 +59,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
                     // handle cancel response here. Doing nothing will dismiss the view.
                 }
                 self.alertController.addAction(cancelAction)
-               DispatchQueue.global().async(execute: {
+                DispatchQueue.global().async(execute: {
                     DispatchQueue.main.sync{
                         self.present(self.alertController, animated: true, completion: nil)
-
+                        
                     }
                 })
-            
+                
             } else if let data = data {
-
+                
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
                 let movies = dataDictionary["results"] as! [[String:Any]]
                 self.movies = movies
@@ -79,18 +79,18 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
         }
         task.resume()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
+        
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
         return self.filteredData.count
     }
-
-
+    
+    
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         let movie = self.filteredData[indexPath.row]
@@ -116,5 +116,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource, UITable
         
         tableView.reloadData()
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell){
+            let movie = movies[indexPath.row]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.movie = movie
+        }
+        
+    }
+    
 }

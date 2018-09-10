@@ -14,6 +14,7 @@
 		A40C5AC0213786A8001590F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A40C5ABE213786A8001590F3 /* LaunchScreen.storyboard */; };
 		A40C5AC8213791C7001590F3 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C5AC7213791C7001590F3 /* NowPlayingViewController.swift */; };
 		A40C5ACA213A7A1E001590F3 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C5AC9213A7A1E001590F3 /* MovieCell.swift */; };
+		A40C5B1321464258001590F3 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40C5B1221464258001590F3 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A40C5AC1213786A8001590F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A40C5AC7213791C7001590F3 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
 		A40C5AC9213A7A1E001590F3 /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		A40C5B1221464258001590F3 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +82,7 @@
 		A40C5AB4213786A8001590F3 /* flix_demo_03 */ = {
 			isa = PBXGroup;
 			children = (
-				A40C5AC7213791C7001590F3 /* NowPlayingViewController.swift */,
+				A40C5B1121464223001590F3 /* ViewControllers */,
 				A40C5AB5213786A8001590F3 /* AppDelegate.swift */,
 				A40C5AB9213786A8001590F3 /* Main.storyboard */,
 				A40C5ABC213786A8001590F3 /* Assets.xcassets */,
@@ -89,6 +91,15 @@
 				A40C5AC9213A7A1E001590F3 /* MovieCell.swift */,
 			);
 			path = flix_demo_03;
+			sourceTree = "<group>";
+		};
+		A40C5B1121464223001590F3 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				A40C5AC7213791C7001590F3 /* NowPlayingViewController.swift */,
+				A40C5B1221464258001590F3 /* DetailViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +239,7 @@
 				A40C5AC8213791C7001590F3 /* NowPlayingViewController.swift in Sources */,
 				A40C5AB6213786A8001590F3 /* AppDelegate.swift in Sources */,
 				A40C5ACA213A7A1E001590F3 /* MovieCell.swift in Sources */,
+				A40C5B1321464258001590F3 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
