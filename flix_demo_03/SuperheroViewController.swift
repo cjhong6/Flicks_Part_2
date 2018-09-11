@@ -16,7 +16,16 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
-        fetchMovie()
+        fetchSuperheroMovie()
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.minimumInteritemSpacing = 5
+        layout.minimumLineSpacing = layout.minimumInteritemSpacing
+        let cellPerLine:CGFloat = 2
+        let interItemSpacingTotal = layout.minimumInteritemSpacing * (cellPerLine - 1)
+        let width = collectionView.frame.size.width / cellPerLine - interItemSpacingTotal / cellPerLine
+        layout.itemSize = CGSize(width: width, height: width * 3 / 2)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,8 +33,8 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
-    func fetchMovie(){
-        let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
+    func fetchSuperheroMovie(){
+        let url = URL(string: "https://api.themoviedb.org/3/movie/260513/similar?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US&page=1")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         
 //        MBProgressHUD.showAdded(to: self.view, animated: true)
